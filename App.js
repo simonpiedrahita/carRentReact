@@ -73,11 +73,18 @@ function RegisterScreen(){
             style ={{marginTop: 10, marginBottom: 30}}
           />
             <Button icon="account" mode="contained" onPress={() => {
-             
+             const user = {
+              name: name,
+              username: username,
+              password:password
+              
+            }
+              //setEstudiantes([...estudiantes, estudiante])
+              users.push(user);
+              alert("El usuario se guardo correctamente")
             }}
-            
             >
-            Ingresar
+            Registrar
           </Button>
 
 
