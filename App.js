@@ -9,14 +9,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TextInput, Button } from 'react-native-paper';
 import { useState } from 'react'
- 
-let users = [{ username: 'Papablo', name: 'Pablo', password: 123456, rol: '1'
-}, {
-  username: 'jairito', name: 'Jairo ', password: 'Yoyo452', rol: '2'
-},
- {
-  username: 'Pedrolo', name: 'Pedro ', password: 'Lopez45', rol: '3'
-},
+
+//arreglo de usuarios
+let users = [
+  {username: 'simon', name: 'simon', password: 1234, rol: '1'}, 
+  {username: 'pepito', name: 'pepito ', password: 1234, rol: '2'},
+  {username: 'fulano', name: 'fulano ', password: 123, rol: '3'},
+]
+//arreglo de carros
+let cars =[
+  {platenumber:'abc123',brand:'toyota',state:true},
+  {platenumber:'def456',brand:'nissan',state:true},
+  {platenumber:'ghi789',brand:'mazda',state:true},
+]
+//arreglo de carros rentas
+let rents =[
+  {platenumber:'abc123',rentnumber:'def456',username: 'simon', rentdate:'22032023'},
 ]
 
 
@@ -34,6 +42,48 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
+}
+
+function RegisterScreen(){
+  //pendiente realizar el push para el registro de lo susuarios
+  const [username, setUsername] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text> Registro De Usuario  </Text>
+          <TextInput label = 'nombre'
+            mode='outlined'
+            onChangeText={name => setName(name)}
+            value= {name}
+            style={{margin: 20}}
+          />
+          <TextInput label = 'usuario'
+            mode='outlined'
+            onChangeText={username => setUsername(username)}
+            value= {username}
+            style={{margin: 20}}
+          />
+          <TextInput label = 'password'
+            secureTextEntry
+            mode='outlined'
+            onChangeText={password => setPassword(password)}
+            value= {password}
+            style ={{marginTop: 10, marginBottom: 30}}
+          />
+            <Button icon="account" mode="contained" onPress={() => {
+             
+            }}
+            
+            >
+            Ingresar
+          </Button>
+
+
+    </View>
+  );
+
 }
 
 function LoginScreen({navigation, route}) {
@@ -77,11 +127,12 @@ function LoginScreen({navigation, route}) {
   );
 }
 
-function ChatScreen() {
+function CarScreen() {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text> CHAT  </Text>
+          <Text> Car Registration  </Text>
+          
 
     </View>
   );
@@ -106,10 +157,10 @@ function HomeTab() {
         },
       }}
     >
-      <Tab.Screen name='Home' component={detallesScreen} />
       <Tab.Screen name='Login' component={LoginScreen}/>
-      <Tab.Screen name='Chat' component={ChatScreen}/>
-
+      <Tab.Screen name='Home' component={detallesScreen} />
+      <Tab.Screen name='Car' component={CarScreen}/>
+      <Tab.Screen name='Register' component={RegisterScreen}/>
     </Tab.Navigator>
   );
 }
